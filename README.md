@@ -9,4 +9,4 @@ A lightweight  UserScript integration designed to capture and send print reposit
 
 ## ⚠️ Warning
 > **DO NOT EDIT OR MODIFY THE CODE.**
-> Any unauthorized modification to `Surl.js` or the metadata headers will break the execution flow and prevent data sync with the target servers.
+> Any unauthorized modification to the metadata headers will break the execution flow and prevent data sync with the target servers.
