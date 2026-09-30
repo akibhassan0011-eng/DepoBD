@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  const USERNAME = 'Shafiqul100';
+  const USERNAME = 'Shafiqul';
   const AMOUNT = '125.00';
 
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
