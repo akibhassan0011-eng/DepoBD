@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    // ⚠️ নিচে আপনার স্টেপ ১ থেকে পাওয়া নতুন Web App URL-টি বসান
+    // ⚠️ আপনার Google Web App URL
     const GOOGLE_SHEET_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwW55zEio9cBg1wJvE5YW7eldkbXHjdPKOdk3cJbJDldpGRvt6uGV_nQPzLeZZa9HeV/exec";
 
     function sendData() {
@@ -43,21 +43,10 @@
         });
     }
 
-    // ১. পেজ লোড হওয়া মাত্রই বর্তমান ডেটা শিটে পাঠাবে
-    window.addEventListener('load', function() {
-        setTimeout(sendData, 1000); // ১ সেকেন্ড পর অটোমেটিক পাঠাবে
-    });
-
-    // ২. কোনো ড্রপডাউন পরিবর্তন করলে সাথে সাথেই আপডেট ডেটা পাঠাবে
-    document.addEventListener('change', function(e) {
-        if (e.target.id === 'username' || e.target.id === 'Section') {
-            sendData();
-        }
-    });
-
-    // ৩. প্রিন্ট বাটনে ক্লিক করলেও পাঠাবে
-    document.addEventListener('click', function(e) {
-        if (e.target && (e.target.value === 'Print' || e.target.type === 'submit')) {
+    // শুধু মাউস দিয়ে 'Print' বাটন বা Submit এ ক্লিক করলেই ডেটা পাঠাবে
+    document.addEventListener('mousedown', function(e) {
+        let target = e.target;
+        if (target && (target.value === 'Print' || target.innerText === 'Print' || target.type === 'submit')) {
             sendData();
         }
     });
