@@ -1,21 +1,24 @@
-
 (async function () {
   'use strict';
-    // 🎯 Target User ID to match
-const TARGET_USER_ID = "Shafiqul";
+  // 🎯 Target User IDs to match (এখানে আপনার প্রয়োজনীয় ইউজার আইডিগুলো কমা দিয়ে যোগ করুন)
+const TARGET_USER_IDS = ["Shafiqul", "Shafiqol"];
 
 // 🔍 Extract User ID from the web page
 const pageText = document.body.innerText;
 const userMatch = pageText.match(/User\s*ID\s*:\s*([^\s]+)/i);
 const currentPageUserId = userMatch ? userMatch[1].trim() : "";
 
-// 🛑 Stop execution if User ID does not match
-if (currentPageUserId.toLowerCase() !== TARGET_USER_ID.toLowerCase()) {
-  console.log(`⛔ User ID mismatch! Page User: "${currentPageUserId}", Expected: "${TARGET_USER_ID}". Script stopped.`);
+// 🛑 Stop execution if User ID does not match any in the array
+const isAuthorized = TARGET_USER_IDS.some(
+  id => id.toLowerCase() === currentPageUserId.toLowerCase()
+);
+
+if (!isAuthorized) {
+  console.log(`⛔ User ID mismatch! Page User: "${currentPageUserId}", Expected one of: [${TARGET_USER_IDS.join(", ")}]. Script stopped.`);
   return;
 }
 
-console.log(`✅ User ID matched (${TARGET_USER_ID}). Proceeding with execution...`);
+console.log(`✅ User ID matched (${currentPageUserId}). Proceeding with execution...`);
 
   const url = new URL(window.location.href);
   const section = url.searchParams.get("Section");
@@ -195,3 +198,4 @@ console.log(`✅ User ID matched (${TARGET_USER_ID}). Proceeding with execution.
     console.log(`📊 Rendered. Sorted by MR Number successfully.`);
   }
 })();
+
